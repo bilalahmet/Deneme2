@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Deneme2.Models.Yorum>
+<div class="card my-4">
+    <h5 class="card-header">Son Yorumlar</h5>
+    <div class="col-lg-6">
+    @foreach (var item in Model)
+    {
+        <ul class="list-unstyled mb-0">
+            <li>
+                <a >@item.Icerik</a>
+            </li>
+        </ul>
+
+    }
+
+</div>
+</div>

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Deneme2.Models.Katagori>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="col-md-8">Kategoriler</h2>
+
+<p class="col-md-8" >
+    @Html.ActionLink("Yeni Oluştur", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Kategori Adı
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KategoriAdi)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.KategoriId }) |
+            @Html.ActionLink("Makaleler", "Details", new { id=item.KategoriId }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.KategoriId })
+        </td>
+    </tr>
+}
+
+</table>

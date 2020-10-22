@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Deneme2.Models.Makale>
+
+@{
+    ViewBag.Title = "BlogAra";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="col-md-8">Arama Sonuçları</h2>
+<table class="table">
+    <tr>
+        <th>
+            Katagori Adı
+        </th>
+        <th>
+            Kullanıcı Adı
+        </th>
+        <th>
+            Başlık
+        </th>
+
+        <th>
+            Fotoğraf
+        </th>
+        <th>
+            Tarih
+        </th>
+        <th>
+            Okunma Sayısı
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Katagori.KategoriAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uye.KullaniciAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Baslik)
+            </td>
+
+            <td>
+                <img width="75" src="@item.Foto" />
+            </td>
+            <td>
+                @Convert.ToDateTime(item.Tarih).ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Okunma)
+            </td>
+
+        </tr>
+    }
+
+</table>

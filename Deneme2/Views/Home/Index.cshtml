@@ -1,0 +1,50 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model IEnumerable<Deneme2.Models.Makale>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Makaleler</h2>
+<div class="col-md-12">
+    @foreach (var item in Model)
+    {
+    <article class="col-sm-12">
+        <h2>
+            <a href="/Home/MakaleDetay/@item.MakaleId">@item.Baslik</a>
+        </h2>
+        <p class="lead">
+            Yazar <a href="/Uye/Index/@item.Uye.UyeId">@item.Uye.KullaniciAdi</a>
+        </p>
+        <p> <span class="glyphicon glyphicon-time"></span>@String.Format("{0: MMMM yyyy}", item.Tarih)</p>
+        <hr>
+        <img class="img-responsive" src="@item.Foto">
+        <hr>
+
+        @if (item.Icerik.Length > 150)
+        {
+            <p>@Html.Raw(item.Icerik.Substring(0, 150)) ...</p>
+        }
+        else
+        {
+            <p>@Html.Raw(item.Icerik)</p>
+
+        }
+        <a class="btn btn-primary" href="/Home/MakaleDetay/@item.MakaleId">Devamını Oku<span class="glyphicon glyphicon-chevron-right"></span></a>
+    </article>
+    }
+
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <div class="pagedList pagination-lg">
+                 @Html.PagedListPager((IPagedList)Model,Page => Url.Action("Index",new {Page }),PagedListRenderOptions.Classic)
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

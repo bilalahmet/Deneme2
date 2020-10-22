@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Blog Ana Sayfa</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/Home/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/Content/Home/css/blog-home.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/Home/Index/">Moto Blog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Home/Index/">
+                            Ana Sayfa
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    @if (Session["uyeid"] != null)
+                    {
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/Create/">Makale Oluştur</a>
+                </li>}
+
+                    @if (@Session["kullaniciadi"] != null)
+                    {
+                <li class="nav-item">
+                    <a class="nav-link" href="/Uye/Index/@Session["uyeid"]">@Session["kullaniciadi"]</a>
+                </li>
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Uye/Logout/"> Çıkış</a>
+                                </li>
+                            if (Convert.ToInt32(@Session["yetkiid"]) == 1)
+                                {
+                <li class="nav-item">
+                    <a class="nav-link" href="/AdminMakale/Index/">Admin Paneli</a>
+                </li> }
+
+
+                            }
+
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Uye/Create/">Kayıt Ol</a>
+                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/Uye/Login/">Giriş</a>
+                                                </li>}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+
+
+
+                @RenderBody()
+
+
+                
+
+            </div>
+
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Search Widget -->
+           
+                @Html.Partial("BlogAraPartial","Shared")
+
+
+                @*Categories Widget*@
+                <div class="card my-4">
+                    <h5 class="card-header">Kategoriler</h5>
+                    @{ Html.RenderAction("KatagoriPartial", "Home"); }
+                </div>
+
+                <!-- Side Widget -->
+                @*<div class="card my-4">
+                    <h5 class="card-header">Son Yorumlar</h5>
+                    @{ Html.RenderAction("YorumPartial","Home");}
+                </div>*@
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Moto Blog @DateTime.Now.Year</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/Home/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/Home/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

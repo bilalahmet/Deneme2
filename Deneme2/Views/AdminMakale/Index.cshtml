@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Deneme2.Models.Makale>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="col-md-12">Makaleler</h2>
+
+<p class="col-md-8">
+    @Html.ActionLink("Yeni Makale", "Create")
+</p>
+<table class="table col-md-12">
+    <tr>
+        <th>
+            Kategori Adı
+        </th>
+        <th>
+            Başlık
+        </th>
+        <th>
+            İçerik
+        </th>
+        <th>
+            Fotoğraf
+        </th>
+        <th>
+            Tarih
+        </th>
+        <th>
+           Yazar
+        </th>
+        <th>
+            Okunma Sayısı
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Katagori.KategoriAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Baslik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IcerikTrimmed)
+        </td>
+        <td>
+            <img width="75" src="@item.Foto" />
+        </td>
+        <td>
+            @Convert.ToDateTime(item.Tarih).ToString("dd/MM/yyyy")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Uye.KullaniciAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Okunma)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.MakaleId }) |
+            @Html.ActionLink("Detay", "Details", new { id=item.MakaleId }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.MakaleId })
+        </td>
+    </tr>
+}
+
+</table>

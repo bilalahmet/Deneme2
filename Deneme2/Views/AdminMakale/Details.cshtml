@@ -1,0 +1,74 @@
+﻿@model Deneme2.Models.Makale
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="col-md-8">Makalenin Detayları</h2>
+
+<div class="col-md-8">
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Kategori Adı
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Katagori.KategoriAdi)
+        </dd>
+
+        <dt>
+            Kullanıcı Adı
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Uye.KullaniciAdi)
+        </dd>
+
+        <dt>
+            Başlık
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Baslik)
+        </dd>
+
+        <dt>
+            İçerik
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Icerik)
+        </dd>
+
+        <dt>
+            Fotoğraf
+        </dt>
+
+        <dd>
+            <img width="200" src="@Model.Foto" />
+        </dd>
+
+        <dt>
+            Tarih
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model=>model.Tarih)
+        </dd>
+
+        <dt>
+            Okunma Sayısı
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Okunma)
+        </dd>
+
+    </dl>
+</div>
+<p class="col-md-8">
+    @Html.ActionLink("Listeye Dön", "Index")
+</p>

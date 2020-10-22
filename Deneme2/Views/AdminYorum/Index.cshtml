@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Deneme2.Models.Yorum>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="col-md-8">Yorumlar</h2>
+
+<table class="table col-md-12">
+    <tr>
+        <th>
+            Makalenin Başlığı
+        </th>
+        <th>
+            Yorum Sahibi
+        </th>
+        <th>
+            Yorum
+        </th>
+        <th>
+            Yorum Yapılma Tarihi
+        </th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/AdminMakale/Details/@item.MakaleId">@Html.DisplayFor(modelItem => item.Makale.Baslik)</a>
+                </td>
+                <td>
+                    <a href="/Admin/UyeDetay/@item.UyeId">@Html.DisplayFor(modelItem => item.Uye.KullaniciAdi)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Icerik)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tarih)
+                </td>
+                <td>
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.YorumId })
+                </td>
+            </tr>
+        }
+
+    }
+
+</table>
